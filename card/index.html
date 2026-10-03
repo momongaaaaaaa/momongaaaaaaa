@@ -1,1 +1,379 @@
-placehoplder text
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Madison Ngo vCard</title>
+
+  <style>
+    @font-face {
+      font-family: 'DepartureMono';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2409-1@1.0/DepartureMono-Regular.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --bg: #0c0c0c;
+      --win-bg: #0c0c0c;
+      --tab-active: #0c0c0c;
+      --titlebar-bg: #1f1f1f;
+      --border: rgba(255, 255, 255, 0.12);
+      --btn-border: #333942;
+      --text: #cccccc;
+      --dim: #767676;
+      --blue: #2B88FF;
+      --green: #13a10e;
+      --white: #ffffff;
+      --font-mono: 'DepartureMono', Consolas, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-mono);
+      -webkit-font-smoothing: none;
+      text-rendering: geometricPrecision;
+    }
+
+    body {
+      background-color: #121212;
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+
+    /* Windows 11 Rounded Window Frame */
+    .win-terminal {
+      background: var(--win-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.85);
+      overflow: hidden;
+    }
+
+    /* Windows 11 Tab & Title Bar */
+    .win-titlebar {
+      background: var(--titlebar-bg);
+      height: 38px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      user-select: none;
+      padding: 0 4px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .tab-group {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 100%;
+      padding-top: 5px;
+    }
+
+    /* Curvy Win11 Active Tab */
+    .tab {
+      background: var(--tab-active);
+      color: var(--white);
+      height: 32px;
+      padding: 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-bottom: none;
+    }
+
+    /* Mini cmd prompt icon frame */
+    .tab-cmd-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 15px;
+      height: 11px;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      font-size: 7px;
+      line-height: 1;
+      border-radius: 2px;
+      color: #ffffff;
+      padding-bottom: 1px;
+    }
+
+    .tab-close {
+      color: var(--dim);
+      font-size: 11px;
+      margin-left: 6px;
+      cursor: default;
+      transition: color 0.1s;
+    }
+
+    .tab-close:hover {
+      color: var(--white);
+    }
+
+    .tab-actions {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      color: #999999;
+      font-size: 12px;
+      padding: 0 6px;
+      height: 32px;
+      cursor: default;
+    }
+
+    .tab-actions span:hover {
+      color: var(--white);
+    }
+
+    /* Windows 11 Fluent Window Controls */
+    .win-controls {
+      display: flex;
+      height: 100%;
+      align-items: center;
+    }
+
+    .win-btn {
+      width: 44px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      font-size: 11px;
+      cursor: default;
+      transition: background-color 0.1s;
+    }
+
+    .win-btn svg {
+      width: 10px;
+      height: 10px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.1;
+    }
+
+    .win-btn:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+      color: var(--white);
+    }
+
+    .win-btn.close:hover {
+      background-color: #c42b1c;
+      color: #ffffff;
+    }
+
+    /* Terminal Body */
+    .terminal-body {
+      padding: 1.4rem 1.2rem;
+    }
+
+    .sys-header {
+      border-left: 2px solid var(--blue);
+      padding-left: 10px;
+      margin-bottom: 1.4rem;
+    }
+
+    .sys-name {
+      font-size: 17px;
+      color: var(--white);
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .sys-sub {
+      font-size: 11px;
+      color: var(--blue);
+      margin-top: 2px;
+    }
+
+    .sys-meta {
+      font-size: 11px;
+      color: var(--dim);
+      margin-top: 2px;
+    }
+
+    .sys-bio {
+      font-size: 11px;
+      color: var(--dim);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    .menu-header {
+      font-size: 11px;
+      color: var(--dim);
+      margin-bottom: 0.6rem;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
+      padding-bottom: 4px;
+    }
+
+    .menu-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin-bottom: 1.6rem;
+    }
+
+    /* Buttons: Resting Subtle Grey, blue Numbers, Green Hover */
+    .cli-btn {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--btn-border);
+      padding: 0.65rem 0.85rem;
+      text-decoration: none;
+      font-size: 11px;
+      color: var(--white);
+      border-radius: 4px;
+      transition: all 0.12s ease-in-out;
+    }
+
+    .cli-btn .index {
+      color: var(--blue);
+      margin-right: 12px;
+      user-select: none;
+      transition: color 0.12s ease-in-out;
+    }
+
+    .cli-btn .label {
+      flex: 1;
+      color: var(--white);
+      transition: color 0.12s ease-in-out;
+    }
+
+    .cli-btn .indicator {
+      color: #6e7681;
+      transition: all 0.12s ease-in-out;
+    }
+
+    .cli-btn:hover {
+      background: rgba(19, 161, 14, 0.12);
+      border-color: var(--green);
+    }
+
+    .cli-btn:hover .index,
+    .cli-btn:hover .label,
+    .cli-btn:hover .indicator {
+      color: var(--green);
+    }
+
+    .cli-btn:hover .indicator {
+      transform: translateX(4px);
+    }
+
+    .prompt-footer {
+      display: flex;
+      align-items: center;
+      font-size: 11px;
+      color: var(--dim);
+      margin-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 0.8rem;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 7px;
+      height: 12px;
+      background-color: var(--white);
+      margin-left: 6px;
+      animation: blink 1s step-start infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="win-terminal">
+    <!-- Windows 11 Titlebar: Curved Tab + Command Prompt + Add/Dropdown + Controls -->
+    <div class="win-titlebar">
+      <div class="tab-group">
+        <div class="tab">
+          <span class="tab-cmd-icon">c:&#95;</span>
+          <span>Command Prompt</span>
+          <span class="tab-close">&#10005;</span>
+        </div>
+        <div class="tab-actions">
+          <span>+</span>
+        </div>
+      </div>
+
+      <div class="win-controls">
+        <div class="win-btn">
+          <svg viewBox="0 0 10 10"><line x1="0" y1="5" x2="10" y2="5"/></svg>
+        </div>
+        <div class="win-btn">
+          <svg viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9"/></svg>
+        </div>
+        <div class="win-btn close">
+          <svg viewBox="0 0 10 10"><line x1="1" y1="1" x2="9" y2="9"/><line x1="9" y1="1" x2="1" y2="9"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Terminal Content Area -->
+    <div class="terminal-body">
+      <div class="sys-header">
+        <div class="sys-name">MADISON NGO</div>
+        <div class="sys-sub">&gt; Biochemistry</div>
+        <div class="sys-meta">California State University, Los Angeles</div>
+
+        <div class="sys-bio">
+          FOCUS:  Analytical Biosensing<br>
+          STATUS: BS Candidate (Senior)
+        </div>
+      </div>
+
+      <div class="menu-header">// DIRECT_LINKS</div>
+
+      <div class="menu-options">
+        <a href="contact.vcf" download class="cli-btn">
+          <span class="index">[1]</span>
+          <span class="label">Contact Information (.vcf)</span>
+          <span class="indicator">&rarr;</span>
+        </a>
+
+        <a href="https://www.linkedin.com/in/madison-ngo-13a924173/" target="_blank" rel="noopener" class="cli-btn">
+          <span class="index">[2]</span>
+          <span class="label">Linkedin</span>
+          <span class="indicator">&rarr;</span>
+        </a>
+
+        <a href="mailto:mngo30@calstatela.edu" class="cli-btn">
+          <span class="index">[3]</span>
+          <span class="label">Email</span>
+          <span class="indicator">&rarr;</span>
+        </a>
+
+        <a href="/resume.pdf" target="_blank" rel="noopener" class="cli-btn">
+          <span class="index">[4]</span>
+          <span class="label">Resume (.pdf)</span>
+          <span class="indicator">&rarr;</span>
+        </a>
+      </div>
+
+      <div class="prompt-footer">
+        <span>Select an option above.</span>
+        <span class="cursor"></span>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
